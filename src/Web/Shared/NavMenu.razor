@@ -1,0 +1,42 @@
+﻿@using Web.Shared.Components
+@using BadIdeas.FontAwesome.Icons
+
+<div>
+    <div class="bg-slate-900 p-4 flex justify-between ">
+        <a class="text-white text-2xl " href="">BlazorWasmTestApp</a>
+        <button title="Navigation menu" class="sm:hidden px-2 text-slate-200 bg-slate-700 hover:bg-slate-600 border border-slate-900/80 rounded" @onclick="ToggleNavMenu">
+            <MenuIcon Item="@Solid.Bars()"></MenuIcon>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex flex-col text-white space-y-4 mt-2 sm:mt-4 sm:p-4">
+        <div>
+            <NavLink class="flex flex-row px-8 py-4 rounded-md border border-slate-800 bg-slate-900/90 hover:bg-slate-900/70" href="" Match="NavLinkMatch.All">
+                <MenuIcon Item="@Solid.House()"></MenuIcon> Home
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="flex flex-row px-8 py-4 rounded-md bg-slate-900/90 hover:bg-slate-900/70"  href="counter">
+                <MenuIcon Item="@Solid.Plus()"></MenuIcon> Counter
+            </NavLink>
+        </div>
+        <div>
+            <NavLink class="flex flex-row px-8 py-4 rounded-md bg-slate-900/90 hover:bg-slate-900/70"  href="fetchdata">
+                <MenuIcon Item="@Solid.TableList()"></MenuIcon> Fetch data
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? MonorailCss.CssClass("hidden sm:block") : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
